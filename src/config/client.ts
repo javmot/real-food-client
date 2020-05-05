@@ -1,12 +1,15 @@
 import { ApolloClient, HttpLink, InMemoryCache } from "@apollo/client";
 import fetch from "isomorphic-unfetch";
 
+export const GRAPHQL_URI =
+	process.env.GRAPHQL_URI || "http://localhost:3333/graphql";
+
 export default function createApolloClient(initialState, ctx) {
 	return new ApolloClient({
 		ssrMode: Boolean(ctx),
 		cache: new InMemoryCache().restore(initialState),
 		link: new HttpLink({
-			uri: "http://localhost:3333/graphql",
+			uri: GRAPHQL_URI,
 			credentials: "same-origin",
 			fetch,
 		}),

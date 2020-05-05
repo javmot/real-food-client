@@ -1,23 +1,34 @@
 import { useRouter } from "next/router";
-import { useQuery } from "@apollo/client";
-import { RECIPE_QUERY } from "../../lib/queries";
-import { withApollo } from "../../lib/apollo";
+import { RECIPES_IDS_QUERYSTRING, RECIPE_QUERYSTRING } from "../../lib/queries";
+import graphqlLittle from "../../lib/graphql-little";
 
-function Recipe() {
-	const router = useRouter();
-	const { id } = router.query;
-	const { loading, error, data } = useQuery(RECIPE_QUERY, {
-		variables: { id },
-	});
-
-	if (error) return <div>Error</div>;
-	if (loading) return <div>Loading</div>;
-
+function Recipe({ recipe }) {
 	return (
 		<div>
-			<h1>{data.recipe.title}</h1>
+			<h1>{recipe.title}</h1>
 		</div>
 	);
 }
 
-export default withApollo({ ssr: true })(Recipe);
+export async function getStaticProps({ params }) {
+	const { recipe } = await graphqlLittle.request(RECIPE_QUERYSTRING, {
+		id: params.id,
+	});
+
+	return {
+		props: {
+			recipe,
+		},
+	};
+}
+
+export async function getStaticPaths() {
+	const { recipes } = await graphqlLittle.request(RECIPES_IDS_QUERYSTRING);
+
+	return {
+		paths: recipes.map(({ id }) => ({ params: { id } })),
+		fallback: false,
+	};
+}
+
+export default Recipe;
