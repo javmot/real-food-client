@@ -1,8 +1,19 @@
 import { useRouter } from "next/router";
+import ErrorPage from "next/error";
 import { RECIPES_IDS_QUERYSTRING, RECIPE_QUERYSTRING } from "../../lib/queries";
 import graphqlLittle from "../../lib/graphql-little";
 
 function Recipe({ recipe }) {
+	const { isFallback } = useRouter();
+
+	if (isFallback) {
+		return <div>Loading...</div>;
+	}
+
+	if (recipe && recipe.error) {
+		return <ErrorPage statusCode={404} />;
+	}
+
 	return (
 		<div>
 			<h1>{recipe.title}</h1>
