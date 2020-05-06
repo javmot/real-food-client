@@ -9,8 +9,8 @@ export const RECIPES_IDS_QUERYSTRING = `
 `;
 
 export const RECIPES_QUERY = gql`
-	query Recipes {
-		recipes {
+	query recipes($limit: Int, $skip: Int) {
+		recipes(limit: $limit, skip: $skip) {
 			id
 			title
 			time
