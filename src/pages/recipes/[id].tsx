@@ -1,3 +1,4 @@
+import Head from "next/head";
 import { useRouter } from "next/router";
 import ErrorPage from "next/error";
 import { RECIPES_IDS_QUERYSTRING, RECIPE_QUERYSTRING } from "../../lib/queries";
@@ -16,6 +17,9 @@ function Recipe({ recipe }) {
 
 	return (
 		<div>
+			<Head>
+				<title>{recipe.title}</title>
+			</Head>
 			<h1>{recipe.title}</h1>
 		</div>
 	);
