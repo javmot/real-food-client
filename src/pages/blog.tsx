@@ -3,6 +3,8 @@ import Link from "next/link";
 import { useQuery, NetworkStatus } from "@apollo/client";
 import { RECIPES_QUERY } from "../lib/queries";
 import { withApollo } from "../lib/apollo";
+import RecipeList from "../components/recipeList";
+import RecipeItem from "../components/recipeItem";
 
 export const allRecipesVars = {
 	skip: 0,
@@ -18,11 +20,12 @@ const Blog = () => {
 		}
 	);
 
+	const loadingMoreRecipes = networkStatus === NetworkStatus.fetchMore;
+
 	if (error) return <div>Error</div>;
-	if (loading) return <div>Loading</div>;
+	if (loading && !loadingMoreRecipes) return <div>Loading</div>;
 
 	const { recipes } = data;
-	const loadingMoreRecipes = networkStatus === NetworkStatus.fetchMore;
 
 	const loadMorePosts = () => {
 		fetchMore({
@@ -34,7 +37,6 @@ const Blog = () => {
 					return previousResult;
 				}
 				return {
-					...previousResult,
 					recipes: [...previousResult.recipes, ...fetchMoreResult.recipes],
 				};
 			},
@@ -46,24 +48,12 @@ const Blog = () => {
 			<Head>
 				<title>Recipes Blog</title>
 			</Head>
-			<h1>Recipes</h1>
-			{recipes.map((recipe) => (
-				<div key={recipe.id}>
-					<h2>
-						<Link href="/recipes/[id]" as={`/recipes/${recipe.id}`}>
-							<a>{recipe.title}</a>
-						</Link>
-					</h2>
-					<ul>
-						{recipe.ingredients.map((ingredient) => (
-							<li key={ingredient.id}>{ingredient.name}</li>
-						))}
-					</ul>
-				</div>
-			))}
-			<button onClick={() => loadMorePosts()} disabled={loadingMoreRecipes}>
-				Show More
-			</button>
+			<h1>Recipes Blog</h1>
+			<RecipeList
+				recipes={recipes}
+				onClickLoadMore={loadMorePosts}
+				loadingMoreRecipes={loadingMoreRecipes}
+			/>
 		</div>
 	);
 };

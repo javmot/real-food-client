@@ -14,6 +14,12 @@ export const RECIPES_QUERY = gql`
 			id
 			title
 			time
+			category {
+				title
+			}
+			user {
+				username
+			}
 			ingredients {
 				id
 				name
