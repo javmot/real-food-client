@@ -50,6 +50,8 @@ The bedca Food Item
 type FoodItem {
 	id: ID! @fake(type: uuid)
 	name: String! @fake(type: productName)
+	quantity: Float! @fake(type: number)
+	unit: String! @examples(values: ["g"])
 }
 
 input FoodItemInput {

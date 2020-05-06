@@ -1,4 +1,4 @@
-import { Recipe } from "../config/interfaces";
+import { RecipeInterface } from "../config/interfaces";
 import RecipeItem from "./recipeItem";
 
 const RecipeList = ({
@@ -6,7 +6,7 @@ const RecipeList = ({
 	onClickLoadMore,
 	loadingMoreRecipes,
 }: {
-	recipes: Array<Recipe>;
+	recipes: Array<RecipeInterface>;
 	onClickLoadMore: () => void;
 	loadingMoreRecipes: boolean;
 }) => {
