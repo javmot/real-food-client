@@ -8,8 +8,12 @@ export default function Home() {
 				<title>Recipes App</title>
 			</Head>
 			<h1>Recipes App</h1>
-			<Link href="/blog">
+			<Link href="/recipes/index">
 				<a>Recipes Blog</a>
+			</Link>
+			<br />
+			<Link href="/users/new-recipe">
+				<a>New Recipe</a>
 			</Link>
 		</>
 	);

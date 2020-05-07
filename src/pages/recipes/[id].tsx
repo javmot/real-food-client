@@ -4,8 +4,8 @@ import ErrorPage from "next/error";
 import { RECIPES_IDS_QUERYSTRING, RECIPE_QUERYSTRING } from "../../lib/queries";
 import graphqlLittle from "../../lib/graphql-little";
 import { RecipeInterface } from "../../config/interfaces";
-import IngredientsSection from "../../components/ingredientsSection";
-import StepsSection from "../../components/stepsSection";
+import IngredientsSection from "../../components/ingredients-section";
+import StepsSection from "../../components/steps-section";
 
 function Recipe({ recipe, errors }: { recipe: RecipeInterface; errors: any }) {
 	const { isFallback } = useRouter();
@@ -50,7 +50,9 @@ export async function getStaticProps({ params }) {
 }
 
 export async function getStaticPaths() {
-	const { recipes } = await graphqlLittle.request(RECIPES_IDS_QUERYSTRING);
+	const { recipes } = await graphqlLittle.request(RECIPES_IDS_QUERYSTRING, {
+		limit: 10,
+	});
 
 	return {
 		paths: recipes.map(({ id }) => ({ params: { id } })),

@@ -1,15 +1,32 @@
 import { gql } from "@apollo/client";
 
+export const CREATE_RECIPE_MUTATION = gql`
+	mutation CreateRecipe($input: CreateRecipeInput!) {
+		createRecipe(input: $input) {
+			id
+		}
+	}
+`;
+
+export const CATEGORIES_QUERY = gql`
+	query RecipeCategories {
+		recipeCategories {
+			id
+			title
+		}
+	}
+`;
+
 export const RECIPES_IDS_QUERYSTRING = `
-	query Recipes {
-		recipes {
+	query Recipes($limit: Int!) {
+		recipes(limit: $limit) {
 			id
 		}
 	}
 `;
 
 export const RECIPES_QUERY = gql`
-	query recipes($limit: Int, $skip: Int) {
+	query Recipes($limit: Int, $skip: Int) {
 		recipes(limit: $limit, skip: $skip) {
 			id
 			title

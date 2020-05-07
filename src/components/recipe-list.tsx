@@ -1,5 +1,5 @@
 import { RecipeInterface } from "../config/interfaces";
-import RecipeItem from "./recipeItem";
+import RecipeItem from "./recipe-item";
 
 const RecipeList = ({
 	recipes,

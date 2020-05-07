@@ -20,7 +20,7 @@
 		"ecmaVersion": 2018,
 		"sourceType": "module"
 	},
-	"plugins": ["@typescript-eslint"],
+	"plugins": ["@typescript-eslint", "eslint-plugin-unicorn"],
 	"ignorePatterns": ["node_modules/"],
 	"rules": {
 		"prettier/prettier": "error",
@@ -31,6 +31,12 @@
 		"import/prefer-default-export": "off",
 		"no-underscore-dangle": ["error", { "allow": ["_id"] }],
 		"no-use-before-define": ["off"],
+		"unicorn/filename-case": [
+			"error",
+			{
+				"case": "kebabCase"
+			}
+		],
 		"import/extensions": [
 			"error",
 			"ignorePackages",
