@@ -5,6 +5,9 @@ const IngredientsSection = ({
 }: {
 	ingredients: IngredientInterface[];
 }) => {
+	if (!ingredients.length) {
+		return <div></div>;
+	}
 	return (
 		<div>
 			<h3>{ingredients.length} Ingredients</h3>

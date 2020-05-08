@@ -68,3 +68,74 @@ export const RECIPE_QUERYSTRING = `
 		}
 	}
 `;
+
+export const RECIPE_QUERY = gql`
+	query Recipe($id: String!) {
+		recipe(id: $id) {
+			id
+			title
+			time
+			info {
+				name
+				foodValues(profile: 1) {
+					id
+					name
+					total
+					unit
+				}
+			}
+			category {
+				id
+				title
+			}
+			ingredients {
+				id
+				name
+			}
+			steps {
+				id
+				title
+				description
+			}
+		}
+	}
+`;
+
+export const GET_FOOD_GROUPS = gql`
+	query FoodGroups {
+		foodGroups {
+			id
+			name
+		}
+	}
+`;
+
+export const GET_FOOD_GROUP = gql`
+	query FoodGroup($input: String!) {
+		foodGroup(input: $input) {
+			id
+			name
+		}
+	}
+`;
+
+export const ADD_INGREDIENT_MUTATION = gql`
+	mutation AddIngredient($ingredient: IngredientInput!, $id: String!) {
+		addIngredient(ingredient: $ingredient, id: $id) {
+			id
+			info {
+				name
+				foodValues {
+					id
+					name
+					total
+					unit
+				}
+			}
+			ingredients {
+				id
+				name
+			}
+		}
+	}
+`;
