@@ -1,5 +1,5 @@
 import { useMutation } from "@apollo/client";
-import { ADD_INGREDIENT_MUTATION } from "../../lib/queries";
+import { ADD_INGREDIENT_MUTATION } from "../../helpers/queries";
 import IngredientForm from "../IngredientForm";
 import { onSubmitIngredient } from "./event-handlers";
 import { IngredientFormContainerProps } from "./interfaces";

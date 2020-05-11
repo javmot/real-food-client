@@ -1,7 +1,7 @@
 import { RecipeInterface } from "../../config/interfaces";
 
 export interface RecipeListProps {
-	data: Array<RecipeInterface>;
+	recipes: Array<RecipeInterface>;
 	onClickLoadMore: () => void;
 	loadingMoreRecipes: boolean;
 }

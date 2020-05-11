@@ -1,6 +1,7 @@
 import { StepsSectionProps } from "./interfaces";
+import withQueryData from "../../helpers/hocs/with-query-data";
 
-const StepsSection = ({ steps }: StepsSectionProps) => {
+const StepsSection = ({ steps = [] }: StepsSectionProps) => {
 	return (
 		<div>
 			<h3>{steps.length} Steps</h3>
@@ -15,4 +16,4 @@ const StepsSection = ({ steps }: StepsSectionProps) => {
 	);
 };
 
-export default StepsSection;
+export default withQueryData(StepsSection);

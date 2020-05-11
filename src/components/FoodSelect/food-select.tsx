@@ -1,4 +1,4 @@
-import withQueryData from "../Hocs/with-query-data";
+import withQueryData from "../../helpers/hocs/with-query-data";
 import { FoodSelectProps } from "./interfaces";
 
 const FoodSelect = ({

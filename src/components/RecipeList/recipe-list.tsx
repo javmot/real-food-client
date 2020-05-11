@@ -1,9 +1,9 @@
 import { RecipeListProps } from "./interfaces";
 import RecipeItem from "../RecipeItem";
-import withQueryData from "../Hocs/with-query-data";
+import withQueryData from "../../helpers/hocs/with-query-data";
 
 const RecipeList = ({
-	data: recipes,
+	recipes = [],
 	onClickLoadMore,
 	loadingMoreRecipes,
 }: RecipeListProps) => {

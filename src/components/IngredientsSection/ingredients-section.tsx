@@ -1,9 +1,7 @@
 import { IngredientsSectionProps } from "./interfaces";
-import withQueryData from "../Hocs/with-query-data";
+import withQueryData from "../../helpers/hocs/with-query-data";
 
-const IngredientsSection = ({
-	data: ingredients = [],
-}: IngredientsSectionProps) => {
+const IngredientsSection = ({ ingredients = [] }: IngredientsSectionProps) => {
 	if (!ingredients.length) {
 		return <div></div>;
 	}
