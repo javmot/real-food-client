@@ -1,16 +1,12 @@
-import { RecipeInterface } from "../config/interfaces";
-import RecipeItem from "./recipe-item";
-import withQueryData from "./hocs/with-query-data";
+import { RecipeListProps } from "./interfaces";
+import RecipeItem from "../RecipeItem";
+import withQueryData from "../Hocs/with-query-data";
 
 const RecipeList = ({
 	data: recipes,
 	onClickLoadMore,
 	loadingMoreRecipes,
-}: {
-	data: Array<RecipeInterface>;
-	onClickLoadMore: () => void;
-	loadingMoreRecipes: boolean;
-}) => {
+}: RecipeListProps) => {
 	return (
 		<div>
 			{recipes.map((recipe) => {

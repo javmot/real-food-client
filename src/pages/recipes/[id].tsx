@@ -4,8 +4,8 @@ import ErrorPage from "next/error";
 import { RECIPES_IDS_QUERYSTRING, RECIPE_QUERYSTRING } from "../../lib/queries";
 import graphqlLittle from "../../lib/graphql-little";
 import { RecipeInterface } from "../../config/interfaces";
-import IngredientsSection from "../../components/ingredients-section";
-import StepsSection from "../../components/steps-section";
+import IngredientsSection from "../../components/IngredientsSection";
+import StepsSection from "../../components/StepsSection";
 
 function Recipe({ recipe, errors }: { recipe: RecipeInterface; errors: any }) {
 	const { isFallback } = useRouter();

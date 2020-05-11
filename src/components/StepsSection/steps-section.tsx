@@ -1,6 +1,6 @@
-import { StepInterface } from "../config/interfaces";
+import { StepsSectionProps } from "./interfaces";
 
-const StepsSection = ({ steps }: { steps: StepInterface[] }) => {
+const StepsSection = ({ steps }: StepsSectionProps) => {
 	return (
 		<div>
 			<h3>{steps.length} Steps</h3>

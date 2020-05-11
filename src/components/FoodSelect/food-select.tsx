@@ -1,14 +1,5 @@
-import withQueryData from "./hocs/with-query-data";
-import { FoodInterface } from "../config/interfaces";
-
-interface FoodSelectProps {
-	data: FoodInterface[];
-	register: any;
-	onChange: (param: any) => void;
-	name: string;
-	label: string;
-	placeholder: string;
-}
+import withQueryData from "../Hocs/with-query-data";
+import { FoodSelectProps } from "./interfaces";
 
 const FoodSelect = ({
 	data = [],

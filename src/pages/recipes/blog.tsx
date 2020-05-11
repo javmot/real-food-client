@@ -2,7 +2,7 @@ import Head from "next/head";
 import { useQuery, NetworkStatus } from "@apollo/client";
 import { RECIPES_QUERY } from "../../lib/queries";
 import { withApollo } from "../../lib/apollo";
-import RecipeList from "../../components/recipe-list";
+import RecipeList from "../../components/RecipeList";
 
 export const allRecipesVars = {
 	skip: 0,

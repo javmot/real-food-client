@@ -1,9 +1,9 @@
 import Link from "next/link";
 import React from "react";
-import { RecipeInterface } from "../config/interfaces";
+import { RecipeItemProps } from "./interfaces";
 
 const RecipeItem = React.memo(
-	({ title, id, category, user }: RecipeInterface) => {
+	({ title, id, category, user }: RecipeItemProps) => {
 		return (
 			<div>
 				<h3>

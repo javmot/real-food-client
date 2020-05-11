@@ -3,9 +3,9 @@ import { useRouter } from "next/router";
 import Head from "next/head";
 import { withApollo } from "../../lib/apollo";
 import { RECIPE_QUERY } from "../../lib/queries";
-import FormIngredientContainer from "../../components/ingredient-form-container";
-import IngredientSection from "../../components/ingredients-section";
-import InfoValuesSection from "../../components/info-values-section";
+import IngredientFormContainer from "../../components/IngredientFormContainer";
+import IngredientsSection from "../../components/IngredientsSection";
+import InfoValuesSection from "../../components/InfoValuesSection";
 
 const AddIngredients = () => {
 	const { query } = useRouter();
@@ -21,8 +21,8 @@ const AddIngredients = () => {
 			<Head>
 				<title>Create Recipe</title>
 			</Head>
-			<FormIngredientContainer recipeId={query.id} />
-			<IngredientSection
+			<IngredientFormContainer recipeId={query.id} />
+			<IngredientsSection
 				loading={loading}
 				error={error}
 				data={data && data.recipe && data.recipe.ingredients}

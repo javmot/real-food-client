@@ -1,24 +1,13 @@
 import { useForm } from "react-hook-form";
 import { useQuery, useLazyQuery } from "@apollo/client";
-import FoodSelect from "./food-select";
-import { GET_FOOD_GROUP, GET_FOOD_GROUPS } from "../lib/queries";
+import FoodSelect from "../FoodSelect";
+import { GET_FOOD_GROUP, GET_FOOD_GROUPS } from "../../lib/queries";
+import { IngredientFormData } from "../../config/interfaces";
+import { onChangeGroups } from "./event-handlers";
+import { IngredientFormProps } from "./interfaces";
 
-interface FormData {
-	foodGroup: string;
-	ingredientId: string;
-	quantity: string;
-}
-
-const onChangeGroups = (getFoodGroup) => (e) => {
-	getFoodGroup({
-		variables: {
-			input: e.target.value,
-		},
-	});
-};
-
-const IngredientForm = ({ onSubmitIngredient }) => {
-	const { register, handleSubmit, errors } = useForm<FormData>();
+const IngredientForm = ({ onSubmitIngredient }: IngredientFormProps) => {
+	const { register, handleSubmit, errors } = useForm<IngredientFormData>();
 	const {
 		loading: loadingFoodGroups,
 		data: foodGroupsData,

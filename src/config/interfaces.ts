@@ -25,3 +25,9 @@ export interface StepInterface {
 	img: string;
 	title: string;
 }
+
+export interface IngredientFormData {
+	foodGroup: string;
+	ingredientId: string;
+	quantity: string;
+}

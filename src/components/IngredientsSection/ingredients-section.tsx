@@ -1,11 +1,9 @@
-import { IngredientInterface } from "../config/interfaces";
-import withQueryData from "./hocs/with-query-data";
+import { IngredientsSectionProps } from "./interfaces";
+import withQueryData from "../Hocs/with-query-data";
 
 const IngredientsSection = ({
 	data: ingredients = [],
-}: {
-	data: IngredientInterface[];
-}) => {
+}: IngredientsSectionProps) => {
 	if (!ingredients.length) {
 		return <div></div>;
 	}
