@@ -1,9 +1,6 @@
 import { ApolloError } from "@apollo/client";
 import { FunctionComponent } from "react";
-
-interface AnyProperties {
-	[prop: string]: any;
-}
+import { AnyProperties } from "../../config/interfaces";
 
 interface WithQueryDataProps extends AnyProperties {
 	loading?: boolean;

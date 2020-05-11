@@ -31,3 +31,7 @@ export interface IngredientFormData {
 	ingredientId: string;
 	quantity: string;
 }
+
+export interface AnyProperties {
+	[prop: string]: any;
+}
