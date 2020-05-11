@@ -1,9 +1,10 @@
 import { IngredientInterface } from "../config/interfaces";
+import withQueryData from "./hocs/with-query-data";
 
 const IngredientsSection = ({
-	ingredients,
+	data: ingredients = [],
 }: {
-	ingredients: IngredientInterface[];
+	data: IngredientInterface[];
 }) => {
 	if (!ingredients.length) {
 		return <div></div>;
@@ -22,4 +23,4 @@ const IngredientsSection = ({
 	);
 };
 
-export default IngredientsSection;
+export default withQueryData(IngredientsSection);

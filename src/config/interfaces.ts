@@ -9,9 +9,12 @@ export interface RecipeInterface {
 	user: any;
 }
 
-export interface IngredientInterface {
+export interface FoodInterface {
 	id: string;
 	name: string;
+}
+
+export interface IngredientInterface extends FoodInterface {
 	quantity: number;
 	unit: string;
 }

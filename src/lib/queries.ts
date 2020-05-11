@@ -4,6 +4,30 @@ export const CREATE_RECIPE_MUTATION = gql`
 	mutation CreateRecipe($input: CreateRecipeInput!) {
 		createRecipe(input: $input) {
 			id
+			title
+			time
+			info {
+				name
+				foodValues(profile: 1) {
+					id
+					name
+					total
+					unit
+				}
+			}
+			category {
+				id
+				title
+			}
+			ingredients {
+				id
+				name
+			}
+			steps {
+				id
+				title
+				description
+			}
 		}
 	}
 `;
@@ -125,7 +149,7 @@ export const ADD_INGREDIENT_MUTATION = gql`
 			id
 			info {
 				name
-				foodValues {
+				foodValues(profile: 1) {
 					id
 					name
 					total

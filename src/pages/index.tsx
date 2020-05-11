@@ -8,7 +8,7 @@ export default function Home() {
 				<title>Recipes App</title>
 			</Head>
 			<h1>Recipes App</h1>
-			<Link href="/recipes/index">
+			<Link href="/recipes/blog">
 				<a>Recipes Blog</a>
 			</Link>
 			<br />

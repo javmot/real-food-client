@@ -1,12 +1,13 @@
 import { RecipeInterface } from "../config/interfaces";
 import RecipeItem from "./recipe-item";
+import withQueryData from "./hocs/with-query-data";
 
 const RecipeList = ({
-	recipes,
+	data: recipes,
 	onClickLoadMore,
 	loadingMoreRecipes,
 }: {
-	recipes: Array<RecipeInterface>;
+	data: Array<RecipeInterface>;
 	onClickLoadMore: () => void;
 	loadingMoreRecipes: boolean;
 }) => {
@@ -22,4 +23,4 @@ const RecipeList = ({
 	);
 };
 
-export default RecipeList;
+export default withQueryData(RecipeList);

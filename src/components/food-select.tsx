@@ -1,17 +1,34 @@
+import withQueryData from "./hocs/with-query-data";
+import { FoodInterface } from "../config/interfaces";
+
+interface FoodSelectProps {
+	data: FoodInterface[];
+	register: any;
+	onChange: (param: any) => void;
+	name: string;
+	label: string;
+	placeholder: string;
+}
+
 const FoodSelect = ({
-	foods,
+	data = [],
 	register,
 	onChange = (_) => {},
 	name,
 	label,
 	placeholder,
-}) => {
+}: FoodSelectProps) => {
 	return (
 		<label>
 			{label}
-			<select name={name} ref={register} onChange={onChange}>
+			<select
+				name={name}
+				ref={register}
+				onChange={onChange}
+				disabled={!data.length}
+			>
 				<option>{placeholder}</option>
-				{foods.map((food) => (
+				{data.map((food) => (
 					<option key={food.id} value={food.id}>
 						{food.name}
 					</option>
@@ -26,4 +43,4 @@ const FoodSelect = ({
 	);
 };
 
-export default FoodSelect;
+export default withQueryData(FoodSelect);

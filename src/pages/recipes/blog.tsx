@@ -1,10 +1,8 @@
 import Head from "next/head";
-import Link from "next/link";
 import { useQuery, NetworkStatus } from "@apollo/client";
 import { RECIPES_QUERY } from "../../lib/queries";
 import { withApollo } from "../../lib/apollo";
 import RecipeList from "../../components/recipe-list";
-import RecipeItem from "../../components/recipe-item";
 
 export const allRecipesVars = {
 	skip: 0,
@@ -22,10 +20,7 @@ const Blog = () => {
 
 	const loadingMoreRecipes = networkStatus === NetworkStatus.fetchMore;
 
-	if (error) return <div>Error</div>;
-	if (loading && !loadingMoreRecipes) return <div>Loading</div>;
-
-	const { recipes } = data;
+	const { recipes = [] } = data || {};
 
 	const loadMorePosts = () => {
 		fetchMore({
@@ -50,7 +45,9 @@ const Blog = () => {
 			</Head>
 			<h1>Recipes Blog</h1>
 			<RecipeList
-				recipes={recipes}
+				data={recipes}
+				loading={loading && !loadingMoreRecipes}
+				error={error}
 				onClickLoadMore={loadMorePosts}
 				loadingMoreRecipes={loadingMoreRecipes}
 			/>

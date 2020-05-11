@@ -1,6 +1,7 @@
 import { IngredientInterface } from "../config/interfaces";
+import withQueryData from "./hocs/with-query-data";
 
-const InfoValuesSection = ({ infoValues = [] }: { infoValues: Array<any> }) => {
+const InfoValuesSection = ({ data: infoValues = [] }: { data: Array<any> }) => {
 	if (!infoValues.length) {
 		return <div></div>;
 	}
@@ -17,4 +18,4 @@ const InfoValuesSection = ({ infoValues = [] }: { infoValues: Array<any> }) => {
 	);
 };
 
-export default InfoValuesSection;
+export default withQueryData(InfoValuesSection);
