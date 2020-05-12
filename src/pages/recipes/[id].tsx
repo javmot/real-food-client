@@ -1,10 +1,8 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
 import ErrorPage from "next/error";
-import {
-	RECIPES_IDS_QUERYSTRING,
-	RECIPE_QUERYSTRING,
-} from "../../helpers/queries";
+import { print } from "graphql/language/printer";
+import { RECIPES_IDS_QUERY, RECIPE_QUERY } from "../../helpers/queries";
 import graphqlLittle from "../../lib/graphql-little";
 import { RecipeInterface } from "../../config/interfaces";
 import IngredientsSection from "../../components/IngredientsSection";
@@ -35,7 +33,7 @@ function Recipe({ recipe, errors }: { recipe: RecipeInterface; errors: any }) {
 
 export async function getStaticProps({ params }) {
 	return graphqlLittle
-		.request(RECIPE_QUERYSTRING, {
+		.request(print(RECIPE_QUERY), {
 			id: params.id,
 		})
 		.then(({ recipe, errors = false }) => ({
@@ -53,8 +51,8 @@ export async function getStaticProps({ params }) {
 }
 
 export async function getStaticPaths() {
-	const { recipes } = await graphqlLittle.request(RECIPES_IDS_QUERYSTRING, {
-		limit: 10,
+	const { recipes } = await graphqlLittle.request(print(RECIPES_IDS_QUERY), {
+		limit: 0,
 	});
 
 	return {

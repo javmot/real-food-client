@@ -1,11 +1,23 @@
 import { gql } from "@apollo/client";
 
-export const CREATE_RECIPE_MUTATION = gql`
-	mutation CreateRecipe($input: CreateRecipeInput!) {
-		createRecipe(input: $input) {
-			id
+// FRAGMENTS
+
+const recipeFragments = {
+	base: gql`
+		fragment RecipeBase on Recipe {
 			title
 			time
+			category {
+				id
+				title
+			}
+			user {
+				username
+			}
+		}
+	`,
+	info: gql`
+		fragment RecipeInfo on Recipe {
 			info {
 				name
 				foodValues(profile: 1) {
@@ -15,33 +27,30 @@ export const CREATE_RECIPE_MUTATION = gql`
 					unit
 				}
 			}
-			category {
-				id
-				title
-			}
+		}
+	`,
+	ingredients: gql`
+		fragment RecipeIngredients on Recipe {
 			ingredients {
 				id
 				name
 			}
+		}
+	`,
+	steps: gql`
+		fragment RecipeSteps on Recipe {
 			steps {
 				id
 				title
 				description
 			}
 		}
-	}
-`;
+	`,
+};
 
-export const CATEGORIES_QUERY = gql`
-	query RecipeCategories {
-		recipeCategories {
-			id
-			title
-		}
-	}
-`;
+// QUERIES
 
-export const RECIPES_IDS_QUERYSTRING = `
+export const RECIPES_IDS_QUERY = gql`
 	query Recipes($limit: Int!) {
 		recipes(limit: $limit) {
 			id
@@ -53,74 +62,33 @@ export const RECIPES_QUERY = gql`
 	query Recipes($limit: Int, $skip: Int) {
 		recipes(limit: $limit, skip: $skip) {
 			id
-			title
-			time
-			category {
-				title
-			}
-			user {
-				username
-			}
-			ingredients {
-				id
-				name
-			}
-			steps {
-				id
-				title
-				description
-			}
+			...RecipeBase
 		}
 	}
-`;
-
-export const RECIPE_QUERYSTRING = `
-	query Recipe($id: String!) {
-		recipe(id: $id) {
-			id
-			title
-			time
-			ingredients {
-				id
-				name
-			}
-			steps {
-				id
-				title
-				description
-			}
-		}
-	}
+	${recipeFragments.base}
 `;
 
 export const RECIPE_QUERY = gql`
 	query Recipe($id: String!) {
 		recipe(id: $id) {
 			id
+			...RecipeBase
+			...RecipeInfo
+			...RecipeIngredients
+			...RecipeSteps
+		}
+	}
+	${recipeFragments.base}
+	${recipeFragments.info}
+	${recipeFragments.ingredients}
+	${recipeFragments.steps}
+`;
+
+export const CATEGORIES_QUERY = gql`
+	query RecipeCategories {
+		recipeCategories {
+			id
 			title
-			time
-			info {
-				name
-				foodValues(profile: 1) {
-					id
-					name
-					total
-					unit
-				}
-			}
-			category {
-				id
-				title
-			}
-			ingredients {
-				id
-				name
-			}
-			steps {
-				id
-				title
-				description
-			}
 		}
 	}
 `;
@@ -143,23 +111,32 @@ export const GET_FOOD_GROUP = gql`
 	}
 `;
 
+// MUTATIONS
+
+export const CREATE_RECIPE_MUTATION = gql`
+	mutation CreateRecipe($input: CreateRecipeInput!) {
+		createRecipe(input: $input) {
+			id
+			...RecipeBase
+			...RecipeInfo
+			...RecipeIngredients
+			...RecipeSteps
+		}
+	}
+	${recipeFragments.base}
+	${recipeFragments.info}
+	${recipeFragments.ingredients}
+	${recipeFragments.steps}
+`;
+
 export const ADD_INGREDIENT_MUTATION = gql`
 	mutation AddIngredient($ingredient: IngredientInput!, $id: String!) {
 		addIngredient(ingredient: $ingredient, id: $id) {
 			id
-			info {
-				name
-				foodValues(profile: 1) {
-					id
-					name
-					total
-					unit
-				}
-			}
-			ingredients {
-				id
-				name
-			}
+			...RecipeInfo
+			...RecipeIngredients
 		}
 	}
+	${recipeFragments.info}
+	${recipeFragments.ingredients}
 `;

@@ -1,4 +1,4 @@
-export const loadMorePosts = (fetchMore, recipes) => () => {
+export const loadMorePosts = (recipes, fetchMore) => () => {
 	fetchMore({
 		variables: {
 			skip: recipes.length,
