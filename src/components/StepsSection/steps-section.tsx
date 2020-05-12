@@ -1,5 +1,5 @@
 import { StepsSectionProps } from "./interfaces";
-import withQueryData from "../../helpers/hocs/with-query-data";
+import withQueryData from "../../lib/with-query-data";
 
 const StepsSection = ({ steps = [] }: StepsSectionProps) => {
 	return (

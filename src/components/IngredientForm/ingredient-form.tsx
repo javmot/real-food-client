@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import { useQuery, useLazyQuery } from "@apollo/client";
 import FoodSelect from "../FoodSelect";
-import { GET_FOOD_GROUP, GET_FOOD_GROUPS } from "../../helpers/queries";
+import { GET_FOOD_GROUP, GET_FOOD_GROUPS } from "../../lib/queries";
 import { IngredientFormData } from "../../config/interfaces";
 import { onChangeGroups } from "./event-handlers";
 import { IngredientFormProps } from "./interfaces";

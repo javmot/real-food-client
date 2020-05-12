@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { withApollo } from "../../lib/apollo";
+import { withApollo } from "../../lib/with-apollo";
 import RecipeListContainer from "../../components/RecipeListContainer";
 
 const Blog = () => {

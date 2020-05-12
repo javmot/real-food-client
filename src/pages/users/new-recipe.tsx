@@ -2,11 +2,8 @@ import Head from "next/head";
 import Router from "next/router";
 import { useMutation, useQuery } from "@apollo/client";
 import { useForm } from "react-hook-form";
-import { withApollo } from "../../lib/apollo";
-import {
-	CREATE_RECIPE_MUTATION,
-	CATEGORIES_QUERY,
-} from "../../helpers/queries";
+import { withApollo } from "../../lib/with-apollo";
+import { CREATE_RECIPE_MUTATION, CATEGORIES_QUERY } from "../../lib/queries";
 
 const Blog = () => {
 	const { register, handleSubmit, errors } = useForm();

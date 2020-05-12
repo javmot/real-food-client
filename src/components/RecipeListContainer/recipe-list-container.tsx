@@ -1,5 +1,5 @@
 import { useQuery, NetworkStatus } from "@apollo/client";
-import { RECIPES_QUERY } from "../../helpers/queries";
+import { RECIPES_QUERY } from "../../lib/queries";
 import RecipeList from "../RecipeList";
 import { loadMorePosts } from "./event-handler";
 
